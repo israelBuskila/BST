@@ -23,7 +23,10 @@ using namespace ariel;
         this->right = right;
     }
 
-
+Tree::Tree(){
+        roo = NULL;
+    }
+	
 void Tree::addHelper(Node *root, int val) {
 	       if(contains(val) == true)
          throw std::invalid_argument( "Value already exists" );
