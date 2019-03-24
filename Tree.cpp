@@ -23,6 +23,32 @@ using namespace ariel;
         this->right = right;
     }
 
+    bool containsNode(Node* top, int data) {
+		if (top == NULL) return false;
+		if (data == top->value) return true;
+		if (data < top->value)  return containsNode(top->left, data);    
+		return containsNode(top->right, data);
+	}
+
+	Node* getParent(Node *root, int key){
+    if (root == NULL) return NULL;
+    else if (root->right->value == key || root->left->value == key) return root;
+	else if (root->value > key) getParent(root->left, key);
+	else getParent(root->right, key);
+	
+	}
+	
+	Node* getNodeByIndex(Node* top, int data) {
+		if (top == NULL) return NULL;
+		if (data == top->value) return top;
+		if (data < top->value)  return getNodeByIndex(top->left, data);    
+		return getNodeByIndex(top->right, data);
+	}
+	
+    Tree::Tree(){
+        roo = NULL;
+    }
+
 	
 void Tree::addHelper(Node *root, int val) {
 	       if(contains(val) == true)
@@ -104,31 +130,6 @@ void Tree::addHelper(Node *root, int val) {
         return deleteValueHelper(current, current->left, value) || deleteValueHelper(current, current->right, value);
     }
 
-    bool containsNode(Node* top, int data) {
-		if (top == NULL) return false;
-		if (data == top->value) return true;
-		if (data < top->value)  return containsNode(top->left, data);    
-		return containsNode(top->right, data);
-	}
-
-	Node* getParent(Node *root, int key){
-    if (root == NULL) return NULL;
-    else if (root->right->value == key || root->left->value == key) return root;
-	else if (root->value > key) getParent(root->left, key);
-	else getParent(root->right, key);
-	
-	}
-	
-	Node* getNodeByIndex(Node* top, int data) {
-		if (top == NULL) return NULL;
-		if (data == top->value) return top;
-		if (data < top->value)  return getNodeByIndex(top->left, data);    
-		return getNodeByIndex(top->right, data);
-	}
-	
-    Tree::Tree(){
-        roo = NULL;
-    }
     void Tree::insert(int i){
         
           if (roo) {
